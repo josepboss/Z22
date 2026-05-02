@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <title>Z2U Auto Fulfiller</title>
+  <style>
+    body {
+      width: 320px;
+      font-family: system-ui, sans-serif;
+      background: #0f172a;
+      color: #e2e8f0;
+      margin: 0;
+      padding: 1rem;
+    }
+    h1 { font-size: 1rem; font-weight: 700; margin-bottom: .25rem; }
+    .sub { font-size: .75rem; color: #94a3b8; margin-bottom: 1rem; }
+    label { display: block; font-size: .75rem; color: #94a3b8; margin-top: .75rem; margin-bottom: .25rem; }
+    input {
+      width: 100%;
+      padding: .4rem .6rem;
+      background: #1e293b;
+      border: 1px solid #334155;
+      border-radius: .375rem;
+      color: #e2e8f0;
+      font-size: .8rem;
+      box-sizing: border-box;
+    }
+    button {
+      width: 100%;
+      margin-top: .75rem;
+      padding: .45rem;
+      background: #6366f1;
+      color: #fff;
+      border: none;
+      border-radius: .375rem;
+      cursor: pointer;
+      font-size: .85rem;
+      font-weight: 500;
+    }
+    button:hover { background: #4f46e5; }
+    .status {
+      margin-top: .75rem;
+      padding: .4rem .6rem;
+      border-radius: .375rem;
+      font-size: .75rem;
+      background: #1e293b;
+      color: #94a3b8;
+    }
+    a { color: #818cf8; font-size: .75rem; text-decoration: none; display: block; margin-top: .5rem; }
+    a:hover { text-decoration: underline; }
+    #msg { font-size: .75rem; margin-top: .5rem; color: #6ee7b7; min-height: 1em; }
+  </style>
+</head>
+<body>
+  <h1>Z2U Auto Fulfiller</h1>
+  <p class="sub">Automated order processing for Z2U via Lfollowers</p>
+
+  <label>Backend Server URL</label>
+  <input type="text" id="serverUrl" placeholder="https://z2.itspanel.com" />
+
+  <label>Z2U Upload API URL <span style="color:#64748b;font-size:.7rem;">(paste from Network tab)</span></label>
+  <input type="text" id="uploadUrl" placeholder="https://www.z2u.com/api/..." />
+
+  <label>File Field Name <span style="color:#64748b;font-size:.7rem;">(default: file)</span></label>
+  <input type="text" id="fileField" placeholder="file" />
+
+  <button id="saveBtn">Save Settings</button>
+  <div id="msg"></div>
+
+  <div class="status" id="statusBox">Loading...</div>
+  <div class="status" id="endpointBox" style="margin-top:.4rem;">Upload endpoint: checking…</div>
+  <a id="adminLink" href="#" target="_blank">Open Admin Dashboard ↗</a>
+
+  <div style="margin-top:.75rem;display:flex;align-items:center;gap:.5rem;">
+    <button id="pauseBtn" style="flex:1;background:#f59e0b;">⏸ Pause Auto-Processing</button>
+    <button id="resetEndpointBtn" style="flex:1;background:#64748b;">Reset Endpoint</button>
+  </div>
+  <div id="pauseMsg" style="font-size:.72rem;margin-top:.35rem;color:#fcd34d;min-height:1em;"></div>
+
+  <button id="captureBtn" style="margin-top:.5rem;background:#0ea5e9;">🎯 Start Capture Mode</button>
+  <div id="captureMsg" style="font-size:.72rem;margin-top:.3rem;color:#7dd3fc;min-height:1.2em;text-align:center;"></div>
+
+  <button id="clearBtn" style="margin-top:.5rem;background:#ef4444;">Clear Processed Orders History</button>
+  <div id="clearMsg" style="font-size:.75rem;margin-top:.35rem;color:#fca5a5;min-height:1em;"></div>
+
+  <hr style="border:none;border-top:1px solid #334155;margin:1rem 0 .5rem;"/>
+  <div style="font-size:.8rem;font-weight:700;color:#7dd3fc;margin-bottom:.5rem;">💬 Telegram Chat Bridge</div>
+
+  <label>Bot Token <span style="color:#64748b;font-size:.7rem;">(from @BotFather)</span></label>
+  <input type="text" id="tgToken" placeholder="123456:ABCdef..." />
+
+  <label>Your Chat ID <span style="color:#64748b;font-size:.7rem;">(send /start to @userinfobot)</span></label>
+  <input type="text" id="tgChatId" placeholder="123456789" />
+
+  <button id="tgSaveBtn" style="background:#0ea5e9;">Save Telegram Settings</button>
+  <div id="tgMsg" style="font-size:.75rem;margin-top:.35rem;color:#6ee7b7;min-height:1em;"></div>
+  <div id="tgStatus" style="font-size:.72rem;color:#94a3b8;margin-top:.3rem;"></div>
+
+  <button id="tgTestBtn" style="margin-top:.4rem;background:#7c3aed;">🧪 Send Test Message</button>
+  <div id="tgTestMsg" style="font-size:.72rem;margin-top:.3rem;color:#c4b5fd;min-height:1em;"></div>
+
+  <script src="popup.js"></script>
+</body>
+</html>
